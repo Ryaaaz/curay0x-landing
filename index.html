@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suray0x | Meme Art · Banner Designer · Web3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #08080c;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(255, 107, 53, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(255, 193, 7, 0.06) 0%, transparent 50%);
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 107, 53, 0.3);
+            border-radius: 50%;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(8, 8, 12, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff6b35, #ffc107, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #a0a0b0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ff6b35, #ffc107);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px 80px;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .greeting {
+            font-size: 1.1rem;
+            color: #ff6b35;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .hero-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b35, #ffc107, #8b5cf6);
+            padding: 4px;
+            margin: 0 auto 30px;
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        .hero-avatar-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #08080c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 53, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(255, 107, 53, 0.6); }
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.05;
+            margin-bottom: 10px;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 .name {
+            background: linear-gradient(135deg, #ff6b35, #ffc107, #ff6b35);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero .tagline {
+            font-size: 1.4rem;
+            color: #b0b0c0;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .hero .description {
+            font-size: 1.05rem;
+            color: #777790;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .hero-badge {
+            padding: 8px 18px;
+            background: rgba(255, 107, 53, 0.08);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: #ff6b35;
+            font-weight: 500;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #ff6b35, #e55a2b);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(255, 107, 53, 0.5);
+        }
+
+        .btn-secondary {
+            padding: 15px 35px;
+            background: transparent;
+            color: #a0a0b0;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 1px solid rgba(255, 107, 53, 0.25);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            border-color: #ff6b35;
+            color: #ff6b35;
+            transform: translateY(-3px);
+        }
+
+        /* Experience Bar */
+        .exp-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-top: 50px;
+            padding: 25px 40px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 107, 53, 0.1);
+            border-radius: 16px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .exp-item {
+            text-align: center;
+        }
+
+        .exp-number {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff6b35, #ffc107);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .exp-label {
+            font-size: 0.75rem;
+            color: #666680;
+            margin-top: 3px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .exp-divider {
+            width: 1px;
+            height: 40px;
+            background: rgba(255, 107, 53, 0.15);
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title .label {
+            font-size: 0.8rem;
+            color: #ff6b35;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .section-title h2 .gradient {
+            background: linear-gradient(135deg, #ff6b35, #ffc107, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title p {
+            color: #666680;
+            font-size: 1.05rem;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            text-align: center;
+        }
+
+        .about-text p {
+            color: #9999a8;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 15px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 107, 53, 0.08);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.4s;
+        }
+
+        .skill-card:hover {
+            border-color: rgba(255, 107, 53, 0.25);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.08);
+        }
+
+        .skill-card .icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .skill-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .skill-card p {
+            color: #777790;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 100px 60px;
+            background: rgba(255, 107, 53, 0.015);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 107, 53, 0.08);
+            border-radius: 16px;
+            padding: 35px;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: rgba(255, 107, 53, 0.25);
+            transform: translateY(-3px);
+        }
+
+        .project-card .project-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .project-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .project-card .project-role {
+            font-size: 0.8rem;
+            color: #ff6b35;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .project-card p {
+            color: #777790;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .project-links {
+            margin-top: 15px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-links a {
+            color: #8b5cf6;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .project-links a:hover {
+            color: #ff6b35;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 107, 53, 0.08);
+            border-radius: 20px;
+            padding: 45px 35px;
+            text-align: center;
+            transition: all 0.4s;
+        }
+
+        .service-card:hover {
+            border-color: rgba(255, 107, 53, 0.25);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(255, 107, 53, 0.08);
+        }
+
+        .service-card .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: #777790;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Social Section */
+        .social-section {
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .social-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .social-section p {
+            color: #666680;
+            font-size: 1.05rem;
+            margin-bottom: 50px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 35px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 107, 53, 0.12);
+            border-radius: 14px;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            border-color: #ff6b35;
+            background: rgba(255, 107, 53, 0.08);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.15);
+        }
+
+        .social-link .icon {
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 60px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 107, 53, 0.06);
+        }
+
+        footer p {
+            color: #444460;
+            font-size: 0.85rem;
+        }
+
+        footer .heart {
+            color: #ff6b35;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 25px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.1rem;
+            }
+
+            .exp-bar {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .exp-divider {
+                width: 60px;
+                height: 1px;
+            }
+
+            .about, .projects, .services {
+                padding: 60px 25px;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Scroll animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">Suray0x</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#social">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="greeting">👋 Hello, I'm</div>
+            <div class="hero-avatar">
+                <div class="hero-avatar-inner">🎨</div>
+            </div>
+            <h1><span class="name">Surya</span></h1>
+            <div class="tagline">Meme Artist · Banner Designer · Web3 Builder</div>
+            <p class="description">
+                4+ tahun ngulik di dunia Web3. Dari bikin meme yang viral sampe design banner buat projek crypto — gw bantu brand crypto tampil keren dan relatable.
+            </p>
+            <div class="hero-badges">
+                <span class="hero-badge">🎨 Meme Art</span>
+                <span class="hero-badge">🖼️ Banner Design</span>
+                <span class="hero-badge">🌐 Web3</span>
+                <span class="hero-badge">🤝 Community</span>
+            </div>
+            <div class="cta-buttons">
+                <a href="#services" class="btn-primary">🎨 Lihat Layanan</a>
+                <a href="#social" class="btn-secondary">💬 Hubungi Gw</a>
+            </div>
+            <div class="exp-bar">
+                <div class="exp-item">
+                    <div class="exp-number">4+</div>
+                    <div class="exp-label">Tahun Web3</div>
+                </div>
+                <div class="exp-divider"></div>
+                <div class="exp-item">
+                    <div class="exp-number">10+</div>
+                    <div class="exp-label">Projek</div>
+                </div>
+                <div class="exp-divider"></div>
+                <div class="exp-item">
+                    <div class="exp-number">ID</div>
+                    <div class="exp-label">Indonesia 🇮🇩</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="section-title fade-in">
+            <div class="label">About Me</div>
+            <h2>Siapa <span class="gradient">Suray0x</span>?</h2>
+            <p>Kenalan dulu sebelum kerja sama</p>
+        </div>
+        <div class="about-text fade-in">
+            <p>
+                Gw suka bikin orang ketawa sambil belajar crypto. Meme itu bahasa universal — dan di Web3, meme adalah senjata paling ampuh buat bikin orang notice.
+            </p>
+            <p>
+                Dari sekadar bikin meme di tahun 2021, sekarang gw udah handle design & community buat berbagai projek crypto di Indonesia dan internasional. Blow Up, Biconomy, Conqueror — gw pernah kerja sama dengan mereka.
+            </p>
+            <p>
+                Sekarang gw juga ngelola channel <strong>@PemulungAirdropId</strong> di Telegram — tempatnya info airdrop buat komunitas Indonesia.
+            </p>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card fade-in">
+                <div class="icon">🎨</div>
+                <h3>Meme Art</h3>
+                <p>Meme yang relatable, viral-worthy, dan pas buat komunitas crypto. Dari template klasik sampe original art.</p>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="icon">🖼️</div>
+                <h3>Banner Design</h3>
+                <p>Banner Twitter, Discord, Telegram, dan website yang bikin projek crypto lu tampil profesional.</p>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="icon">🤝</div>
+                <h3>Community Management</h3>
+                <p>Moderating, engagement, anti-FUD — gw jaga komunitas lu tetap sehat dan aktif.</p>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="icon">📢</div>
+                <h3>Airdrop Campaign</h3>
+                <p>Setup bot, manage giveaways, oversee contest — gw urus semua biar campaign lu jalan lancar.</p>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="icon">🌐</div>
+                <h3>Web3 Native</h3>
+                <p>4+ tahun di crypto. Paham DeFi, NFT, tokenomics — bukan cuma design, tapi juga strategi.</p>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="icon">🗣️</div>
+                <h3>Bilingual</h3>
+                <p>Bahasa & English — bisa handle komunitas lokal dan internasional dengan sama baiknya.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="section-title fade-in">
+            <div class="label">What I Do</div>
+            <h2>Layanan <span class="gradient">Gw</span></h2>
+            <p>Yang bisa gw bantu buat lu</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="icon">😂</div>
+                <h3>Meme Design</h3>
+                <p>Custom meme buat marketing, engagement, atau cuma buat hiburan komunitas. Dijamin ngakak.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="icon">🎯</div>
+                <h3>Banner & Graphics</h3>
+                <p>Banner sosmed, announcement, event — design yang bikin orang stop scrolling dan notice.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="icon">🏗️</div>
+                <h3>Brand Identity</h3>
+                <p>Logo, color palette, visual style guide — bikin projek crypto lu punya identitas yang kuat.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="projects" id="projects">
+        <div class="section-title fade-in">
+            <div class="label">Experience</div>
+            <h2>Projek yang Pernah <span class="gradient">Gw Garap</span></h2>
+            <p>Beberapa dari sekian banyak projek yang udah gw handle</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card fade-in">
+                <div class="project-icon">💥</div>
+                <h3>Blow Up</h3>
+                <div class="project-role">BSC Project</div>
+                <p>Community management & design untuk projek gamefi di BSC.</p>
+                <div class="project-links">
+                    <a href="https://t.me/BlowUPchat" target="_blank">Telegram →</a>
+                    <a href="https://blowupbsc.com" target="_blank">Website →</a>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <div class="project-icon">🔗</div>
+                <h3>Biconomy</h3>
+                <div class="project-role">BSC Project</div>
+                <p>Community moderation & banner design untuk infrastruktur Web3.</p>
+                <div class="project-links">
+                    <a href="https://t.me/Biconomy_Global" target="_blank">Telegram →</a>
+                    <a href="https://biconomy.com" target="_blank">Website →</a>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <div class="project-icon">⚔️</div>
+                <h3>Conqueror</h3>
+                <div class="project-role">BSC Project</div>
+                <p>Design & community support untuk projek gamefi strategi.</p>
+                <div class="project-links">
+                    <a href="https://t.me/Qonqueror" target="_blank">Telegram →</a>
+                    <a href="https://www.conqueror.game" target="_blank">Website →</a>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <div class="project-icon">🗑️</div>
+                <h3>Pemulung Airdrop ID</h3>
+                <div class="project-role">Admin · Telegram Channel</div>
+                <p>Ngelola channel info airdrop terbesar di Indonesia. Ratusan anggota aktif setiap hari.</p>
+                <div class="project-links">
+                    <a href="https://t.me/PemulungAirdropId" target="_blank">Telegram →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social -->
+    <section class="social-section" id="social">
+        <h2 class="fade-in">Mau <span class="gradient">Kerja Sama</span>?</h2>
+        <p class="fade-in">Langsung aja hubungi gw di bawah ini</p>
+        <div class="social-links fade-in">
+            <a href="https://x.com/ordrya" target="_blank" class="social-link">
+                <span class="icon">𝕏</span>
+                <span>Twitter / X</span>
+            </a>
+            <a href="https://t.me/curay0x" target="_blank" class="social-link">
+                <span class="icon">✈️</span>
+                <span>Telegram</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Made with <span class="heart">🧡</span> by Suray0x · 2026</p>
+    </footer>
+
+    <script>
+        // Particles
+        const container = document.getElementById('particles');
+        for (let i = 0; i < 25; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.animationDelay = Math.random() * 15 + 's';
+            p.style.animationDuration = (10 + Math.random() * 10) + 's';
+            container.appendChild(p);
+        }
+
+        // Scroll animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
